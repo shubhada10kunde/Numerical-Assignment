@@ -101,8 +101,8 @@ int main()
         }
     }
 
-    cout << "Augmented Matrix:\n";
-    PrintMatrix(augmented_matrix);
+    // cout << "Augmented Matrix:\n";
+    // PrintMatrix(augmented_matrix);
 
     return 0;
 }
