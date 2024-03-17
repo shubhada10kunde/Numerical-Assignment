@@ -101,8 +101,37 @@ int main()
         }
     }
 
-    // cout << "Augmented Matrix:\n";
-    // PrintMatrix(augmented_matrix);
+    cout << "Augmented Matrix:\n";
+    PrintMatrix(augmented_matrix);
+    cout << endl;
+
+    // reducing the matrix in upper triangular matrix
+    //  divide each row by pivot element
+    for (int i = 0; i < rows_Left; i++)
+    {
+        double pivot = augmented_matrix[i][i];
+        for (int j = 0; j < cols_Left + cols_Right; j++)
+        {
+            augmented_matrix[i][j] = augmented_matrix[i][j] / pivot;
+        }
+        PrintMatrix(augmented_matrix);
+    }
+
+    // reducing element below pivot zero
+    for (int i = 0; i < rows_Left; i++)
+    {
+        for (int k = i + 1; k < rows_Left; k++)
+        {
+            double temp = augmented_matrix[k][i];
+            for (int j = i; j < cols_Left + cols_Right; j++)
+            {
+                augmented_matrix[k][j] = augmented_matrix[k][j] + (-temp) * augmented_matrix[i][j];
+            }
+        }
+    }
+
+    cout << "Matrix after reducing elements below pivot to zero:\n";
+    PrintMatrix(augmented_matrix);
 
     return 0;
 }
