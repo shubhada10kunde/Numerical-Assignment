@@ -117,21 +117,21 @@ int main()
         PrintMatrix(augmented_matrix);
     }
 
-    // reducing element below pivot zero
-    for (int i = 0; i < rows_Left; i++)
-    {
-        for (int k = i + 1; k < rows_Left; k++)
-        {
-            double temp = augmented_matrix[k][i];
-            for (int j = i; j < cols_Left + cols_Right; j++)
-            {
-                augmented_matrix[k][j] = augmented_matrix[k][j] + (-temp) * augmented_matrix[i][j];
-            }
-        }
-    }
+    // reducing element below pivot zerogi
+    // for (int i = 0; i < rows_Left; i++)
+    // {
+    //     for (int k = i + 1; k < rows_Left; k++)
+    //     {
+    //         double temp = augmented_matrix[k][i];
+    //         for (int j = i; j < cols_Left + cols_Right; j++)
+    //         {
+    //             augmented_matrix[k][j] = augmented_matrix[k][j] + (-temp) * augmented_matrix[i][j];
+    //         }
+    //     }
+    // }
 
-    cout << "Matrix after reducing elements below pivot to zero:\n";
-    PrintMatrix(augmented_matrix);
+    // cout << "Matrix after reducing elements below pivot to zero:\n";
+    // PrintMatrix(augmented_matrix);
 
     return 0;
 }
