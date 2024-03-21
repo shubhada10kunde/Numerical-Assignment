@@ -26,7 +26,7 @@ int main()
 
     int rows_Left, cols_Left;
     Fin >> rows_Left >> cols_Left;
-    cout << "\n rows::" << rows_Left << "\tcols::" << cols_Left << endl;
+    cout << "\n No of rows::" << rows_Left << "\tNo of cols::" << cols_Left << endl;
 
     // double **mat = new double *[rows];
 
@@ -53,7 +53,7 @@ int main()
 
     int rows_Right, cols_Right;
     Fin >> rows_Right >> cols_Right;
-    cout << "\n rows::" << rows_Right << "\tcols::" << cols_Right << endl;
+    cout << "\n No of rows::" << rows_Right << "\tNo of cols::" << cols_Right << endl;
 
     vector<vector<double>> mat_Right(rows_Right, vector<double>(cols_Right));
 
@@ -101,37 +101,42 @@ int main()
         }
     }
 
-    cout << "Augmented Matrix:\n";
+    cout << "Given Augmented Matrix::\n";
     PrintMatrix(augmented_matrix);
     cout << endl;
 
-    // reducing the matrix in upper triangular matrix
-    //  divide each row by pivot element
+    // reducing the matrix to upper triangular form
     for (int i = 0; i < rows_Left; i++)
     {
+        // Step 1: Pivot Selection
         double pivot = augmented_matrix[i][i];
-        for (int j = 0; j < cols_Left + cols_Right; j++)
-        {
-            augmented_matrix[i][j] = augmented_matrix[i][j] / pivot;
-        }
-        PrintMatrix(augmented_matrix);
-    }
 
-    // reducing element below pivot zero
-    for (int i = 0; i < rows_Left; i++)
-    {
+        // Step 2: Normalize Pivot Row
+        for (int j = i; j < cols_Left + cols_Right; j++)
+        {
+            augmented_matrix[i][j] /= pivot;
+        }
+
+        // Step 3: Elimination
         for (int k = i + 1; k < rows_Left; k++)
         {
             double temp = augmented_matrix[k][i];
             for (int j = i; j < cols_Left + cols_Right; j++)
             {
-                augmented_matrix[k][j] = augmented_matrix[k][j] + (-temp) * augmented_matrix[i][j];
+                augmented_matrix[k][j] -= temp * augmented_matrix[i][j];
             }
         }
+
+        PrintMatrix(augmented_matrix); // if i want to see the matrix after each iteration
+        cout << endl;
     }
 
-    // cout << "Matrix after reducing elements below pivot to zero:\n";
-    // PrintMatrix(augmented_matrix);
+    cout << "Matrix in upper triangular form::\n";
+    PrintMatrix(augmented_matrix);
+
+    // back substitution
+
+    // double *ans =
 
     return 0;
 }
