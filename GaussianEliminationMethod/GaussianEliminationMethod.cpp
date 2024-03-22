@@ -127,8 +127,8 @@ int main()
             }
         }
 
-        // PrintMatrix(augmented_matrix); // if i want to see the matrix after each iteration
-        // cout << endl;
+        PrintMatrix(augmented_matrix); // if i want to see the matrix after each iteration
+        cout << endl;
     }
 
     cout << "Matrix in upper triangular form::\n";
@@ -136,23 +136,29 @@ int main()
 
     // back substitution
 
-    vector<double> BackSubstitution(cols_Right);
+    vector<double> BackSubstitution(cols_Left);
     // BackSubstitution[cols_Left + cols_Right] = augmented_matrix[rows_Left + rows_Right - 1][cols_Left + cols_Right - 1];
     // cout << "Solution::" << endl;
+
+    // Initialize BackSubstitution vector with zeros
+    for (int i = 0; i < cols_Left; ++i)
+    {
+        BackSubstitution[i] = 0.0;
+    }
 
     for (int i = rows_Left - 1; i >= 0; --i)
     {
         double LHS = 0;
-        for (int j = i + 1; j < cols_Left; ++j)
+        for (int j = i + 1; j < cols_Left + cols_Right; ++j)
         {
-            LHS += augmented_matrix[i][j] * BackSubstitution[j];
+            LHS += augmented_matrix[i][j] * BackSubstitution[j - cols_Left];
             // cout << "\nLHS::" << LHS << endl;
         }
         BackSubstitution[i] = augmented_matrix[i][cols_Left] - LHS;
     }
 
     cout << "Solution::" << endl;
-    for (int i = 0; i < cols_Right; ++i)
+    for (int i = 0; i < cols_Left; ++i)
     {
         cout << "x" << i + 1 << " = " << BackSubstitution[i] << endl;
     }
