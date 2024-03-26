@@ -141,20 +141,27 @@ int main()
     // cout << "Solution::" << endl;
 
     // Initialize BackSubstitution vector with zeros
-    for (int i = 0; i < cols_Left; ++i)
-    {
-        BackSubstitution[i] = 0.0;
-    }
+    // for (int i = 0; i < cols_Left; ++i)
+    // {
+    //     BackSubstitution[i] = 0.0;
+    // }
 
     for (int i = rows_Left - 1; i >= 0; --i)
     {
-        double LHS = 0;
-        for (int j = i + 1; j < cols_Left + cols_Right; ++j)
+        //     double RHS = augmented_matrix[i][cols_Left]; // Right-hand side of the equation
+        //     for (int j = i + 1; j < cols_Left; ++j)
+        //     {
+        //         RHS -= augmented_matrix[i][j] * BackSubstitution[j];
+        //     }
+        //     BackSubstitution[i] = RHS / augmented_matrix[i][i];
+        //
+
+        double sum = 0;
+        for (int j = i + 1; j < cols_Left; ++j)
         {
-            LHS += augmented_matrix[i][j] * BackSubstitution[j - cols_Left];
-            // cout << "\nLHS::" << LHS << endl;
+            sum += augmented_matrix[i][j] * BackSubstitution[j];
         }
-        BackSubstitution[i] = augmented_matrix[i][cols_Left] - LHS;
+        BackSubstitution[i] = (augmented_matrix[i][cols_Left] - sum) / augmented_matrix[i][i];
     }
 
     cout << "Solution::" << endl;
