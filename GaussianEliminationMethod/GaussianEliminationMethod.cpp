@@ -167,7 +167,7 @@ int main()
     cout << "Solution::" << endl;
     for (int i = 0; i < cols_Left; ++i)
     {
-        cout << "x" << i + 1 << " = " << BackSubstitution[i] << endl;
+        // cout << "x" << i + 1 << " = " << BackSubstitution[i] << endl;
     }
 
     return 0;
