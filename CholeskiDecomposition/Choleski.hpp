@@ -1,12 +1,21 @@
+#include <vector>
 
 class Matrix
 {
 public:
-    Matrix();
+    int Rows, Cols;
+    std::vector<std::vector<double>> Mat;
 
-    void ReadMatrixFromFile();
+    Matrix();
+    Matrix(int, int);
+
+    void ReadMatrixFromFile(std::string);
     void PrintMatrix();
     bool isSymmetric();
     void CholeskyDecomposition();
-    void getL_Matrix();
+
+    double getDiagonalElement(Matrix, int);
+    double getLowerTriangularMatrix(Matrix, int, int);
+
+    // void getLowerTriangularMatrix();
 };
