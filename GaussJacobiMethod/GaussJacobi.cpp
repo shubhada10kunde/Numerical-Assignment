@@ -2,19 +2,19 @@
 #include "GaussJacobi.hpp"
 using namespace std;
 
-double TOL = 0.00001;
+// double TOL = 0.00001;
 Matrix::Matrix() // default constructor
 {
     cout << "Gauss Jacobi...!" << endl;
 };
 
 // declaring globally
-string MatrixFile = "3x4_matrix.txt";
-int Rows, Cols;
-vector<vector<double>> Mat;
+// string MatrixFile = "3x4_matrix.txt";
+// int Rows, Cols;
+// vector<vector<double>> Mat;
 
 // Function to read the matrix from file
-void Matrix::ReadMatrixFromFile()
+void Matrix::ReadMatrixFromFile(string MatrixFile)
 {
     ifstream Fin;
     Fin.open(MatrixFile);
